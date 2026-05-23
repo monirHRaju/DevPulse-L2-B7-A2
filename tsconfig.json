@@ -7,9 +7,10 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -27,6 +28,8 @@
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
