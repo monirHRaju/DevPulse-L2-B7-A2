@@ -38,3 +38,15 @@ export interface JwtPayload {
   name: string;
   role: Role;
 }
+
+export interface SignupBody {
+  name: string;
+  email: string;
+  password: string;
+  role?: Role;
+}
+
+export interface LoginBody {
+  email: string;
+  password: string;
+}

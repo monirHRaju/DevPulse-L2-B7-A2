@@ -4,6 +4,7 @@ import {
   notFoundHandler,
   globalErrorHandler,
 } from "./middleware/globalErrorHandler.js";
+import authRoutes from "./api/routes/auth.routes.js";
 
 export const createApp = (): Application => {
   const app = express();
@@ -18,6 +19,8 @@ export const createApp = (): Application => {
       data: { uptime: process.uptime() },
     });
   });
+
+  app.use("/api/auth", authRoutes);
 
   app.use(notFoundHandler);
   app.use(globalErrorHandler);
