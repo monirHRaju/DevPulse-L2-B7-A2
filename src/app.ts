@@ -5,6 +5,7 @@ import {
   globalErrorHandler,
 } from "./middleware/globalErrorHandler.js";
 import authRoutes from "./api/routes/auth.routes.js";
+import issueRoutes from "./api/routes/issue.routes.js";
 
 export const createApp = (): Application => {
   const app = express();
@@ -21,6 +22,7 @@ export const createApp = (): Application => {
   });
 
   app.use("/api/auth", authRoutes);
+  app.use("/api/issues", issueRoutes);
 
   app.use(notFoundHandler);
   app.use(globalErrorHandler);

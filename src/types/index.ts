@@ -50,3 +50,26 @@ export interface LoginBody {
   email: string;
   password: string;
 }
+
+export interface CreateIssueBody {
+  title: string;
+  description: string;
+  type: IssueType;
+}
+
+export interface UpdateIssueBody {
+  title?: string;
+  description?: string;
+  type?: IssueType;
+}
+
+export interface ListIssuesQuery {
+  sort?: "newest" | "oldest";
+  type?: IssueType;
+  status?: IssueStatus;
+}
+
+export interface IssueWithReporter
+  extends Omit<Issue, "reporter_id"> {
+  reporter: ReporterSummary;
+}
