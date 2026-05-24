@@ -7,6 +7,7 @@ import {
 } from "./middleware/globalErrorHandler.js";
 import authRoutes from "./api/routes/auth.routes.js";
 import issueRoutes from "./api/routes/issue.routes.js";
+import { pool } from "./database/index.js";
 
 export const createApp = (): Application => {
   const app = express();
@@ -15,11 +16,26 @@ export const createApp = (): Application => {
   app.use(express.json());
   app.use(requestLogger);
 
-  app.get("/api/health", (_req: Request, res: Response) => {
-    res.status(200).json({
-      success: true,
-      message: "DevPulse API is running",
-      data: { uptime: process.uptime() },
+  app.get("/api/health", async (_req: Request, res: Response) => {
+    let database: "up" | "down" = "down";
+    try {
+      await pool.query("SELECT 1");
+      database = "up";
+    } catch (err) {
+      console.error("Health check DB ping failed:", err);
+    }
+
+    const allUp = database === "up";
+    res.status(allUp ? 200 : 503).json({
+      success: allUp,
+      message: allUp
+        ? "DevPulse API is running"
+        : "DevPulse API is up but the database is unreachable",
+      data: {
+        uptime: process.uptime(),
+        database,
+        timestamp: new Date().toISOString(),
+      },
     });
   });
 
