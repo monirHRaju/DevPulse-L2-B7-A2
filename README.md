@@ -1,5 +1,6 @@
 # DevPulse
-
+## Live : https://devpulse-issue-tracker.onrender.com
+## GitHub: https://github.com/monirHRaju/DevPulse-L2-B7-A2.git
 Internal Tech Issue & Feature Tracker — a small Node.js / TypeScript / Express backend backed by PostgreSQL. Users can register, log in, report bugs or feature requests, and (if they are maintainers) move issues through a simple workflow.
 
 ## Tech Stack
