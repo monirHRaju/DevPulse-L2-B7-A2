@@ -1,4 +1,5 @@
 import express, { type Application, type Request, type Response } from "express";
+import cors from "cors";
 import { requestLogger } from "./middleware/logger.js";
 import {
   notFoundHandler,
@@ -10,6 +11,7 @@ import issueRoutes from "./api/routes/issue.routes.js";
 export const createApp = (): Application => {
   const app = express();
 
+  app.use(cors());
   app.use(express.json());
   app.use(requestLogger);
 
